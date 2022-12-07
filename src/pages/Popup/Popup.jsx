@@ -19,6 +19,7 @@ const Popup = () => {
         >
           Learn React!
         </a>
+        <button id="save-btn">SAVE SELECTION</button>
       </header>
     </div>
   );
