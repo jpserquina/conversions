@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "conversions",
-  "description": "--- ---",
+  "description": "Yet another Google Chrome extension to help with the little things",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {

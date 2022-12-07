@@ -1,7 +1,7 @@
 {
   "name": "conversions",
-  "version": "1.0.0",
-  "description": "--- ---",
+  "version": "0.0.1",
+  "description": "Yet another Google Chrome extension to help with the little things",
   "license": "MIT",
   "repository": {
     "type": "git",
