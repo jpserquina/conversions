@@ -1,4 +1,5 @@
 import { notify } from "../Content/modules/notify";
+import * as conversions from "../Content/modules/convert";
 
 console.log('This is the background page.');
 console.log('Put the background scripts here.');
@@ -17,7 +18,9 @@ export const copySelection = async () => {
     } catch (e) {
         return; // ignoring an unsupported page like chrome://extensions
     }
-    return(result);
+    const convertedResult = conversions.convertInchesToCentimeters(result);
+
+    return(convertedResult);
 };
 
 const contextClick = (info, tab) => {
