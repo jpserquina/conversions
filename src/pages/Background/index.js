@@ -1,8 +1,12 @@
+import { notify } from "../Content/modules/notify";
+
 console.log('This is the background page.');
 console.log('Put the background scripts here.');
 
 export const copySelection = async () => {
-    const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+    const [tab] = await chrome.tabs.query(
+        {active: true, currentWindow: true}
+    );
     console.log("copySelection: tab.id: " + tab.id);
     let result;
     try {
@@ -13,7 +17,7 @@ export const copySelection = async () => {
     } catch (e) {
         return; // ignoring an unsupported page like chrome://extensions
     }
-    return("result: `" + result + "`");
+    return(result);
 };
 
 const contextClick = (info, tab) => {
@@ -21,16 +25,16 @@ const contextClick = (info, tab) => {
 
     if (menuItemId === 'foo') {
         // do something
-        copySelection().then((result) => alert(result))
+        copySelection().then((result) => notify(result))
     }
 }
-
-chrome.contextMenus.onClicked.addListener(contextClick)
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: 'foo',
-        title: 'first',
+        title: 'Convert!',
         contexts: ['selection']
-    })
+    });
 });
+
+chrome.contextMenus.onClicked.addListener(contextClick);
