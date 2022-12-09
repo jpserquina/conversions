@@ -20,7 +20,17 @@ export const copySelection = async () => {
     }
     const convertedResult = conversions.convertInchesToCentimeters(result);
 
-    return(convertedResult);
+    return await chrome.scripting.executeScript({
+        target: {tabId: tab.id},
+        args: [convertedResult],
+        func: (convertedResult) => {
+            const range = getSelection().getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(document.createTextNode(convertedResult));
+        },
+    }).finally( () => {
+        return getSelection().toString();
+    });
 };
 
 const contextClick = (info, tab) => {
