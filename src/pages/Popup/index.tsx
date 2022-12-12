@@ -8,8 +8,13 @@ import {notify} from "../Content/modules/notify";
 
 render(<Popup />, window.document.querySelector('#app-container'));
 
-document.getElementById("save-btn").onclick =
-    copySelection.then((result) => notify(result)
-);
+document.getElementById("save-btn")!.onclick =
+    () => {
+        copySelection().then(
+            (result: any) => {
+                if (result) notify(result)
+            }
+        )
+    };
 
 if (module.hot) module.hot.accept();

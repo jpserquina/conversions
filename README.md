@@ -6,7 +6,9 @@
 
 ### What's it for
 
-Yet another Google Chrome extension to help with the little things.
+Yet another Google Chrome extension to help with the little things. Manifest V3 compliant.
+
+All project logic is made with Typescript; utils files are untouched in Javascript.
 
 Highlight and right-click some text on a webpage, select `Convert!`, and the extension will do its magic. (WIP - mobile / touch)
 
