@@ -19,6 +19,7 @@ Current integrations work offline; later ones will  include online look-ups.
 ### Compiling locally
 
 - Pull repo to local
+- Run `npm install`
 - Run `npm start`
 - Load `build` folder as an unpacked extension in Google Chrome
 - (WIP: Firefox, Opera, and Edge)
