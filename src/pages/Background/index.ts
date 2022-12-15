@@ -1,5 +1,6 @@
 import { notify } from "../Content/modules/notify";
 import * as conversions from "../Content/modules/convert";
+import * as styles from "../Content/modules/style";
 
 console.log('This is the background page.');
 console.log('Put the background scripts here.');
@@ -14,18 +15,19 @@ export const copySelection = async () => {
 
                     const [{result}] = await chrome.scripting.executeScript({
                         target: {tabId: tabId},
-                        func: () => { return getSelection()!.toString() }
+                        func: () => { return getSelection()!.toString().trim() }
                     });
 
                     const convertedResult = conversions.convertInchesToCentimeters(result);
+                    const styledResult = styles.styleResultForDisplay(convertedResult);
 
                     await chrome.scripting.executeScript({
                         target: {tabId: tabId},
-                        args: [convertedResult],
-                        func: (convertedResult: any) => {
+                        args: [styledResult],
+                        func: (styledResult: any) => {
                             const range = getSelection()!.getRangeAt(0);
                             range.deleteContents();
-                            range.insertNode(document.createTextNode(convertedResult));
+                            range.insertNode(document.createTextNode(styledResult));
                             resolve(getSelection()!.toString())
                         }
                     });
